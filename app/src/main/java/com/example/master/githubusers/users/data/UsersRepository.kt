@@ -5,12 +5,7 @@ import com.example.master.githubusers.api.GithubApiService
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class UsersRepository : IUsersRepository {
-    private val mApi: GithubApiService
-
-    @Inject constructor(mApi: GithubApiService) {
-        this.mApi = mApi
-    }
+class UsersRepository @Inject constructor(private val mApi: GithubApiService) : IUsersRepository {
 
     override fun searchUsers(location: String, language: String): Observable<Result> {
         return  mApi.search(query = "language:$language+location:$location")
